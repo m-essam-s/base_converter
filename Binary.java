@@ -1,12 +1,12 @@
-/**
+ /**
  * Binary
  */
 public class Binary {
 
-  public static int ToDecimal(String binary) {
-    if (Binary.contains(".")) {
-      String FractionPart = Binary.substring(Binary.indexOf('.') + 1);
-      String IntegerPart = Binary.replace("." + FractionPart, "");
+  public static String ToDecimal(String binary) {
+    if (binary.contains(".")) {
+      String FractionPart = binary.substring(binary.indexOf('.') + 1);
+      String IntegerPart = binary.replace("." + FractionPart, "");
       int num1 = 0;
       char[] IntegeR = IntegerPart.toCharArray();
       int counter1 = 0;
@@ -29,7 +29,7 @@ public class Binary {
       String Dicemal = Dicemal1 + "." + Dicemal2.substring(2);
       return Dicemal;
     } else {
-      String IntegerPart = Binary;
+      String IntegerPart = binary;
       int num1 = 0;
       char[] IntegeR = IntegerPart.toCharArray();
       int counter1 = 0;
@@ -43,10 +43,12 @@ public class Binary {
     }
   }
 
+
+
   public static String ToOctal(String binary) {
-    if (Binary.contains(".")) {
-      String FractionsPart = Binary.substring(Binary.indexOf('.') + 1);
-      String IntegerPart = Binary.replace("." + FractionsPart, "");
+    if (binary.contains(".")) {
+      String FractionsPart = binary.substring(binary.indexOf('.') + 1);
+      String IntegerPart = binary.replace("." + FractionsPart, "");
       String I;
       while (IntegerPart.length() % 3 != 0) {
         I = "0" + IntegerPart;
@@ -79,17 +81,17 @@ public class Binary {
       return Octal;
     } else {
       String I;
-      while (Binary.length() % 3 != 0) {
-        I = "0" + Binary;
-        Binary = I;
+      while (binary.length() % 3 != 0) {
+        I = "0" + binary;
+        binary = I;
       }
-      int num = (Integer.parseInt(Binary, 2));
+      int num = (Integer.parseInt(binary, 2));
       String Octal = Integer.toOctalString(num);
       return Octal;
     }
   }
 
-  public static String ToHexadecimal(String binary) {
+  public static String ToHexadecimal(String Binary) {
     if (Binary.contains(".")) {
       String FractionsPart = Binary.substring(Binary.indexOf('.') + 1);
       String IntegerPart = Binary.replace("." + FractionsPart, "");
@@ -135,4 +137,12 @@ public class Binary {
       return Hex;
     }
   }
+  
+  private static String removeLastCharacter(String str) {
+    String result = null;
+    if ((str != null) && (str.length() > 0)) {
+       result = str.substring(0, str.length() - 1);
+    }
+    return result;
+}
 }
