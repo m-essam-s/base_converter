@@ -3,28 +3,28 @@
  */
 public class Octal {
 
-  public static int toDecimal(String Octal) {
-    String Binary = Octal_To_Binary(Octal);
-    String Decimal = Binary_To_Decimal(Binary);
-    return Decimal;
+  public static String ToDecimal(String Octal) {
+    String binary = ToBinary(Octal);
+    String decimal = Binary.ToDecimal(binary);
+    return decimal;
   }
 
-  public static String toBinary(String Octal) {
-    int Binary;
-    Binary = Octal.replaceAll("0", "000");
-    Binary = Octal.replaceAll("1", "001");
-    Binary = Octal.replaceAll("2", "010");
-    Binary = Octal.replaceAll("3", "011");
-    Binary = Octal.replaceAll("4", "100");
-    Binary = Octal.replaceAll("5", "101");
-    Binary = Octal.replaceAll("6", "110");
-    Binary = Octal.replaceAll("7", "111");
-    return Binary;
+  public static String ToBinary(String OctToBi) {
+    OctToBi = OctToBi.replaceAll("0", "000");
+    OctToBi = OctToBi.replaceAll("1", "001");
+    OctToBi = OctToBi.replaceAll("2", "010");
+    OctToBi = OctToBi.replaceAll("3", "011");
+    OctToBi = OctToBi.replaceAll("4", "100");
+    OctToBi = OctToBi.replaceAll("5", "101");
+    OctToBi = OctToBi.replaceAll("6", "110");
+    OctToBi = OctToBi.replaceAll("7", "111");
+    return OctToBi;
   }
 
-  public static String toHexadecimal(String Octal) {
-    String Binary = Octal_To_Binary(Octal);
-    String Hexadecimal = Binary_To_Hexadecimal(Binary);
+  public static String ToHexadecimal(String Octal) {
+    String binary = ToBinary(Octal);
+    String Hexadecimal = Binary.ToHexadecimal(binary);
     return Hexadecimal;
   }
+
 }
