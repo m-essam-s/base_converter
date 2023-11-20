@@ -1,6 +1,6 @@
 # Number System Converter
 
-This Java project provides a simple number system converter with support for decimal, binary, octal, and hexadecimal conversions.
+This `Java` project provides a simple number system converter with support for decimal, binary, octal, and hexadecimal conversions.
 
 ## Files
 
