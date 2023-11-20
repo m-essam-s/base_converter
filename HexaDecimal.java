@@ -3,32 +3,37 @@
  */
 public class HexaDecimal {
 
-  public static int ToDecimal(String Hexadecimal) {
-    return Binary_To_Decimal(Hexadecimal_To_Binary(Hexadecimal));
+
+  public static String ToDecimal(String Hexadecimal) {
+    String binary = ToBinary(Hexadecimal);
+    String decimal = Binary.ToDecimal(binary);
+    return decimal;
   }
 
-  public static String ToBinary(String Hexadecimal) {
-    String Binary;
-    Binary = Hexadecimal.replaceAll("0", "0000");
-    Binary = Hexadecimal.replaceAll("1", "0001");
-    Binary = Hexadecimal.replaceAll("2", "0010");
-    Binary = Hexadecimal.replaceAll("3", "0011");
-    Binary = Hexadecimal.replaceAll("4", "0100");
-    Binary = Hexadecimal.replaceAll("5", "0101");
-    Binary = Hexadecimal.replaceAll("6", "0110");
-    Binary = Hexadecimal.replaceAll("7", "0111");
-    Binary = Hexadecimal.replaceAll("8", "1000");
-    Binary = Hexadecimal.replaceAll("9", "1001");
-    Binary = Hexadecimal.replaceAll("A", "1010");
-    Binary = Hexadecimal.replaceAll("B", "1011");
-    Binary = Hexadecimal.replaceAll("C", "1100");
-    Binary = Hexadecimal.replaceAll("D", "1101");
-    Binary = Hexadecimal.replaceAll("E", "1110");
-    Binary = Hexadecimal.replaceAll("F", "1111");
-    return Binary;
+  public static String ToBinary(String HexToBi) {
+    HexToBi = HexToBi.replaceAll("0", "0000");
+    HexToBi = HexToBi.replaceAll("1", "0001");
+    HexToBi = HexToBi.replaceAll("2", "0010");
+    HexToBi = HexToBi.replaceAll("3", "0011");
+    HexToBi = HexToBi.replaceAll("4", "0100");
+    HexToBi = HexToBi.replaceAll("5", "0101");
+    HexToBi = HexToBi.replaceAll("6", "0110");
+    HexToBi = HexToBi.replaceAll("7", "0111");
+    HexToBi = HexToBi.replaceAll("8", "1000");
+    HexToBi = HexToBi.replaceAll("9", "1001");
+    HexToBi = HexToBi.replaceAll("A", "1010");
+    HexToBi = HexToBi.replaceAll("B", "1011");
+    HexToBi = HexToBi.replaceAll("C", "1100"); 
+    HexToBi = HexToBi.replaceAll("D", "1101");
+    HexToBi = HexToBi.replaceAll("E", "1110");
+    HexToBi = HexToBi.replaceAll("F", "1111");
+    return HexToBi;
   }
 
   public static String ToOctal(String Hexadecimal) {
-    return Decimal.ToOctal(toDecimal(Hexadecimal));
+    String binary = ToBinary(Hexadecimal);
+    String octal = Binary.ToOctal(binary);
+    return octal;
   }
+
 }
