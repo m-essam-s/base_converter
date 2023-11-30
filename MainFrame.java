@@ -7,9 +7,9 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 public class MainFrame extends JFrame implements ActionListener {
-  TextFields inputField = new TextFields("Enter a number");
+  TextFields inputField = new TextFields("");
   TextFields outputField = new TextFields("Result");
-  Labels inputSystemLabel = new Labels("Input System");
+  Labels inputSystemLabel = new Labels("From System");
   Labels outputSystemLabel = new Labels("Output System");
   Labels inputNumberLabel = new Labels("Input Number");
   Labels outputNumberLabel = new Labels("Output Number");
@@ -21,7 +21,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
   public MainFrame() {
     setTitle("Number System Converter");
-    setSize(400, 600);
+    setSize(400, 530);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     getContentPane().setBackground(new java.awt.Color(195, 195, 195));
     setResizable(false);
@@ -30,36 +30,27 @@ public class MainFrame extends JFrame implements ActionListener {
     setLayout(null);
     setVisible(true);
 
-    inputField.setLocation(20, 100);
-    inputNumberLabel.setLocation(30, 50);
-    outputNumberLabel.setLocation(30, 100);
-    inputSystemLabel.setLocation(30, 50);
-    outputSystem.setLocation(30, 100);
-    inputSystem.setLocation(30, 150);
-    outputSystem.setLocation(30, 200);
-    convertButton.setLocation(10, 300);
-    swapButton.setLocation(135, 300);
-    clearButton.setLocation(260, 300);
-    outputField.setLocation(20, 500);
 
-    int horizontalGap = 10;
-    int verticalGap = 20;
 
-    inputNumberLabel.setLocation(horizontalGap, verticalGap);
-    inputField.setLocation(horizontalGap, verticalGap + 50);
+    inputNumberLabel.setLocation(30, 10);
+    inputField.setLocation(30, 40);
 
-    outputNumberLabel.setLocation(horizontalGap, verticalGap + 100);
-    outputField.setLocation(horizontalGap, verticalGap + 150);
+    
+    inputSystemLabel.setLocation(30, 80);
+    inputSystem.setLocation(30, 110);
 
-    inputSystemLabel.setLocation(horizontalGap, verticalGap + 200);
-    inputSystem.setLocation(horizontalGap, verticalGap + 250);
 
-    outputSystem.setLocation(horizontalGap, verticalGap + 300);
-    outputSystem.setLocation(horizontalGap, verticalGap + 350);
+    outputSystemLabel.setLocation(30, 200);
+    outputSystem.setLocation(30, 230);
 
-    convertButton.setLocation(horizontalGap, verticalGap + 400);
-    swapButton.setLocation(horizontalGap + 125, verticalGap + 400);
-    clearButton.setLocation(horizontalGap + 250, verticalGap + 400);
+    convertButton.setLocation(30, 350);
+    swapButton.setLocation(140, 350);
+    clearButton.setLocation(250, 350);
+
+    outputNumberLabel.setLocation(30, 390);
+    outputField.setLocation(30, 420);
+    
+
 
     add(inputField);
     add(inputNumberLabel);
@@ -71,40 +62,28 @@ public class MainFrame extends JFrame implements ActionListener {
     add(clearButton);
     add(swapButton);
     add(inputSystem);
-    add(outputSystem);
+    add(outputSystemLabel);
 
     convertButton.addActionListener(this);
     clearButton.addActionListener(this);
-
     inputField.addActionListener(this);
     outputField.addActionListener(this);
     inputSystem.addActionListener(this);
     outputSystem.addActionListener(this);
 
-    inputField.setVisible(true);
     inputNumberLabel.setVisible(true);
-    outputNumberLabel.setVisible(true);
+    inputField.setVisible(true);
     inputSystemLabel.setVisible(true);
-    outputSystem.setVisible(true);
-    outputField.setVisible(true);
-    convertButton.setVisible(true);
-    clearButton.setVisible(true);
-    swapButton.setVisible(true);
     inputSystem.setVisible(true);
+    outputSystemLabel.setVisible(true);
     outputSystem.setVisible(true);
-
+    convertButton.setVisible(true);
+    swapButton.setVisible(true);
+    clearButton.setVisible(true);
+    outputNumberLabel.setVisible(true);
+    outputField.setVisible(true);
     inputField.setEditable(true);
     outputField.setEditable(false);
-
-    inputField.setHorizontalAlignment(JTextField.CENTER);
-    outputField.setHorizontalAlignment(JTextField.CENTER);
-
-    // inputField.requestFocus();
-
-    // inputField.selectAll();
-
-    // inputField.grabFocus();
-
   }
 
   @Override
@@ -194,7 +173,7 @@ public class MainFrame extends JFrame implements ActionListener {
 class Buttons extends JButton {
   public Buttons(String string) {
     setText(string);
-    setSize(120, 40);
+    setSize(100, 30);
     setBackground(new java.awt.Color(169, 169, 169));
   }
 }
@@ -213,8 +192,10 @@ class ComboBoxes extends JComboBox<String> {
 class TextFields extends JTextField {
   public TextFields(String string) {
     setText(string);
-    setSize(350, 40);
+    setSize(320, 40);
     setBackground(new java.awt.Color(255, 255, 255));
+    setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 10, 5, 10));
+    setFont(new java.awt.Font("Arial", 0, 15));
   }
 }
 
