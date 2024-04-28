@@ -1,3 +1,4 @@
+package numbersystemconverter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -14,7 +15,7 @@ public class MainFrame extends JFrame implements ActionListener {
   Labels inputNumberLabel = new Labels("Input Number");
   Labels outputNumberLabel = new Labels("Output Number");
   Buttons convertButton = new Buttons("Convert");
-  Buttons clearButton = new Buttons("Clear");
+  Buttons resetButton = new Buttons("Reset");
   Buttons swapButton = new Buttons("Swap");
   ComboBoxes inputSystem = new ComboBoxes(new String[] { "Decimal", "Binary", "Octal", "Hexadecimal" });
   ComboBoxes outputSystem = new ComboBoxes(new String[] { "Decimal", "Binary", "Octal", "Hexadecimal" });
@@ -45,7 +46,7 @@ public class MainFrame extends JFrame implements ActionListener {
 
     convertButton.setLocation(30, 350);
     swapButton.setLocation(140, 350);
-    clearButton.setLocation(250, 350);
+    resetButton.setLocation(250, 350);
 
     outputNumberLabel.setLocation(30, 390);
     outputField.setLocation(30, 420);
@@ -59,17 +60,19 @@ public class MainFrame extends JFrame implements ActionListener {
     add(outputSystem);
     add(outputField);
     add(convertButton);
-    add(clearButton);
+    add(resetButton);
     add(swapButton);
     add(inputSystem);
     add(outputSystemLabel);
 
     convertButton.addActionListener(this);
-    clearButton.addActionListener(this);
+    resetButton.addActionListener(this);
     inputField.addActionListener(this);
     outputField.addActionListener(this);
     inputSystem.addActionListener(this);
     outputSystem.addActionListener(this);
+    swapButton.addActionListener(this);
+
 
     inputNumberLabel.setVisible(true);
     inputField.setVisible(true);
@@ -79,7 +82,7 @@ public class MainFrame extends JFrame implements ActionListener {
     outputSystem.setVisible(true);
     convertButton.setVisible(true);
     swapButton.setVisible(true);
-    clearButton.setVisible(true);
+    resetButton.setVisible(true);
     outputNumberLabel.setVisible(true);
     outputField.setVisible(true);
     inputField.setEditable(true);
@@ -92,6 +95,9 @@ public class MainFrame extends JFrame implements ActionListener {
       switch ((String) inputSystem.getSelectedItem()) {
         case "Decimal":
           switch ((String) outputSystem.getSelectedItem()) {
+            case "Decimal":
+              outputField.setText(inputField.getText());
+              break;
             case "Binary":
               outputField.setText(Decimal.ToBinary(inputField.getText()));
               break;
@@ -110,6 +116,9 @@ public class MainFrame extends JFrame implements ActionListener {
           switch ((String) outputSystem.getSelectedItem()) {
             case "Decimal":
               outputField.setText(Binary.ToDecimal(inputField.getText()));
+              break;
+            case "Binary":
+              outputField.setText(inputField.getText());
               break;
             case "Octal":
               outputField.setText(Binary.ToOctal(inputField.getText()));
@@ -130,6 +139,9 @@ public class MainFrame extends JFrame implements ActionListener {
             case "Binary":
               outputField.setText(Octal.ToBinary(inputField.getText()));
               break;
+            case "Octal":
+              outputField.setText(inputField.getText());
+              break;
             case "Hexadecimal":
               outputField.setText(Octal.ToHexadecimal(inputField.getText()));
               break;
@@ -149,6 +161,9 @@ public class MainFrame extends JFrame implements ActionListener {
             case "Octal":
               outputField.setText(Octal.ToHexadecimal(inputField.getText()));
               break;
+            case "Hexadecimal":
+              outputField.setText(inputField.getText());
+              break;
             default:
               outputField.setText("Please select a valid output system");
               break;
@@ -158,9 +173,11 @@ public class MainFrame extends JFrame implements ActionListener {
           outputField.setText("Please select a valid input system");
           break;
       }
-    } else if (e.getSource() == clearButton) {
+    } else if (e.getSource() == resetButton) {
       inputField.setText("");
+      inputSystem.setSelectedItem("Decimal");
       outputField.setText("");
+      outputSystem.setSelectedItem("Decimal");
     } else if (e.getSource() == swapButton) {
       String temp = (String) inputSystem.getSelectedItem();
       inputSystem.setSelectedItem(outputSystem.getSelectedItem());
