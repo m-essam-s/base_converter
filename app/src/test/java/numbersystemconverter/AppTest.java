@@ -7,8 +7,21 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
-    @Test void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+   
+    @Test void testBinaryToDecimal63bit() {
+        assertEquals("9223372036854775807", Binary.ToDecimal("111111111111111111111111111111111111111111111111111111111111111"));
     }
+    @Test void testDecimalToBinary63bit() {
+        assertEquals("111111111111111111111111111111111111111111111111111111111111111", Decimal.ToBinary("9223372036854775807"));
+    }
+    @Test void testDecimalToOctal63bit() {
+        assertEquals("777777777777777777777", Decimal.ToOctal("9223372036854775807"));
+    }
+    @Test void testDecimalToHexadecimal63bit() {
+        assertEquals("7FFFFFFFFFFFFFFF", Decimal.ToHexadecimal("9223372036854775807"));
+    }
+    @Test void testOctalToDecimal63bit() {
+        assertEquals("9223372036854775807", Octal.ToDecimal("7777777777777777777777"));
+    }
+    
 }
