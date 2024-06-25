@@ -1,52 +1,128 @@
-# Number System Converter
+# Base Converter App
 
-This `Java` project provides a simple number system converter with support for decimal, binary, octal, and hexadecimal conversions.
+Base Converter App is a Flutter application that allows users to convert numbers between different bases: Decimal, Binary, Hexadecimal, and Octal. It features a clean, professional UI, supports dark and light themes, and is responsive across various devices, including mobile phones, tablets, and desktops.
 
-## Files
+## Features
 
-### 1. `Decimal.java`
+- **Base Conversion**: Convert numbers between Decimal, Binary, Hexadecimal, and Octal.
+- **Responsive Design**: Optimized for different screen sizes, including mobile, tablet, and desktop.
+- **Dark/Light Theme**: Toggle between dark and light modes.
+- **User-Friendly Interface**: Intuitive and clean UI for a seamless user experience.
 
-This file contains the `Decimal` class, which provides methods to convert decimal numbers to binary, octal, and hexadecimal. It also handles conversion from binary to decimal.
+## Screenshots
 
-### 2. `Binary.java`
+### Mobile View
 
-The `Binary` class in this file includes methods for converting binary numbers to decimal, octal, and hexadecimal. It relies on the `Decimal` class for binary to decimal conversion.
+| Light Theme | Dark Theme |
+|-------------|------------|
+| ![Mobile View Light](./Screenshot/mobile_view_light.jpg) | ![Mobile View Dark](./Screenshot/mobile_view_dark.jpg) |
 
-### 3. `Octal.java`
+### Tablet View
 
-The `Octal` class offers functionality to convert octal numbers to decimal, binary, and hexadecimal. It utilizes the `Binary` class for conversion.
+| Light Theme | Dark Theme |
+|-------------|------------|
+|![Tablet View](./Screenshot/tablet_view_light.png)|![Tablet View](./Screenshot/tablet_view_dark.png)|
 
-### 4. `HexaDecimal.java`
+### Desktop View
 
-In this file, the `HexaDecimal` class handles the conversion of hexadecimal numbers to decimal, binary, and octal. It relies on the `Binary` class for binary conversion.
 
-### 5. `MainFrame.java`
+| Light Theme |
+|-------------|
+![Desktop View](./Screenshot/desktop_view_light.png)
+| Dark Theme |
+|![Desktop View](./Screenshot/desktop_view_dark.png)|
 
-The `MainFrame` class represents the main graphical user interface (GUI) of the Number System Converter. It includes text fields, labels, buttons, and combo boxes to facilitate input and output of number conversions. The class implements the ActionListener interface to handle button clicks.
+## Getting Started
 
-  - `Buttons`, `ComboBoxes`, `TextFields`, `Labels`
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
 
-These classes are utility classes extending the JButton, JComboBox, JTextField, and JLabel classes, respectively. They provide a consistent and reusable UI component design.
+### Prerequisites
 
-### 6. `Main.java`
+- [Flutter SDK](https://flutter.dev/docs/get-started/install)
+- [Android Studio](https://developer.android.com/studio) or [Visual Studio Code](https://code.visualstudio.com/) with Flutter and Dart plugins
 
-The `Main` class contains the `main` method and serves as the entry point for the application. It creates an instance of the `MainFrame` class to launch the GUI.
+### Installation
 
-## How to Use
+1. Clone the repository:
 
-1. Run the `Main.java` file to start the application.
-2. Enter a number in the "Input Number" field.
-3. Select the input and output number systems using the dropdown menus.
-4. Click the "Convert" button to perform the conversion.
-5. The result will be displayed in the "Result" field.
-6. Use the "Clear" button to reset the input and output fields.
+   ```bash
+   git clone https://github.com/your-username/base_converter_app.git
+   cd base_converter_app
+   ```
 
-Feel free to explore and contribute to enhance the functionality or add support for additional number systems.
+2. Install dependencies:
+
+   ```bash
+   flutter pub get
+   ```
+
+3. Run the app:
+
+   ```bash
+   flutter run
+   ```
+
+## Usage
+
+1. Enter the number you want to convert in the input field.
+2. Select the base of the input number from the "Convert From" dropdown.
+3. Select the base you want to convert the number to from the "Convert To" dropdown.
+4. The converted number will be displayed below the dropdowns.
+
+## File Structure
+
+```plaintext
+base_converter_app/
+├── lib/
+│   ├── models/
+│   │   ├── binary.dart
+│   │   ├── decimal.dart
+│   │   ├── hexadecimal.dart
+│   │   ├── octal.dart
+│   ├── themes/
+│   │   ├── theme_notifier.dart
+|   |   ├── theme.dart
+|   ├── widgets/
+│   |   ├── converter_widget.dart
+│   ├── main.dart
+└── pubspec.yaml
+```
+
+## Models
+
+### `binary.dart`
+
+Functions to convert binary numbers to other bases and vice versa.
+
+### `decimal.dart`
+
+Functions to convert decimal numbers to other bases and vice versa.
+
+### `hexadecimal.dart`
+
+Functions to convert hexadecimal numbers to other bases and vice versa.
+
+### `octal.dart`
+
+Functions to convert octal numbers to other bases and vice versa.
+
+## Themes
+
+### `theme_notifier.dart`
+
+Notifier class to toggle between dark and light themes.
+
+## Widgets
+
+### `converter_widget.dart`
+
+Main widget that contains the UI and logic for base conversion.
 
 ## Contributing
 
-Contributions to this project are welcome! If you have ideas for improvements, bug fixes, or additional features, feel free to open an issue or submit a pull request.
+Contributions are welcome! Please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
-## License
+## Acknowledgments
 
-This project is licensed under the MIT License.
+- [Flutter](https://flutter.dev/)
+- [Provider](https://pub.dev/packages/provider)
