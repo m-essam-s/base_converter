@@ -3,6 +3,11 @@ import 'package:base_converter/models/binary.dart';
 class Decimal {
   static String toBinary(String decimal) {
     try {
+      bool isNegative = decimal.startsWith("-");
+      if (isNegative) {
+        decimal = decimal.substring(1);
+      }
+
       if (decimal.contains(".")) {
         double num = double.parse(decimal);
         int integral = num.toInt();
@@ -11,44 +16,64 @@ class Decimal {
         StringBuffer binaryBuilder = StringBuffer();
 
         // Convert integral part to binary
-        StringBuffer integralPart = StringBuffer();
-        while (integral > 0) {
-          int rem = integral % 2;
-          integralPart.write(rem);
-          integral ~/= 2;
+        if (integral == 0) {
+          binaryBuilder.write('0');
+        } else {
+          while (integral > 0) {
+            int rem = integral % 2;
+            binaryBuilder.write(rem);
+            integral ~/= 2;
+          }
+          binaryBuilder = StringBuffer(
+              binaryBuilder.toString().split('').reversed.join(''));
         }
-        binaryBuilder.write(integralPart.toString().split('').reversed.join());
 
         binaryBuilder.write('.');
 
         // Convert fractional part to binary
-        int precision = 64;
-        while (precision-- > 0) {
+        int maxFractionBits = 20;
+        while (maxFractionBits-- > 0) {
           fractional *= 2;
           int fractBit = fractional.toInt();
-
           if (fractBit == 1) {
             fractional -= fractBit;
             binaryBuilder.write('1');
           } else {
             binaryBuilder.write('0');
           }
+
+          if (fractional == 0) {
+            break;
+          }
         }
 
-        return binaryBuilder.toString();
+        String binaryResult = binaryBuilder.toString();
+        if (isNegative) {
+          binaryResult = "-$binaryResult";
+        }
+        return binaryResult;
       } else {
-        String integerPart = decimal;
-        int num = int.parse(integerPart);
+        int num = int.parse(decimal);
         StringBuffer binaryBuilder = StringBuffer();
 
         // Convert integral part to binary
-        while (num > 0) {
-          int n = num % 2;
-          binaryBuilder.write(n);
-          num ~/= 2;
+        if (num == 0) {
+          binaryBuilder.write('0');
+        } else {
+          while (num > 0) {
+            int rem = num % 2;
+            binaryBuilder.write(rem);
+            num ~/= 2;
+          }
+          binaryBuilder = StringBuffer(
+              binaryBuilder.toString().split('').reversed.join(''));
         }
 
-        return binaryBuilder.toString().split('').reversed.join();
+        String binaryResult = binaryBuilder.toString();
+        if (isNegative) {
+          binaryResult = "-$binaryResult";
+        }
+        return binaryResult;
       }
     } on FormatException {
       return "Error: Invalid input. Please provide a valid decimal number.";
