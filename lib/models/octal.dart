@@ -1,4 +1,3 @@
-import 'package:base_converter/models/binary.dart';
 import 'dart:math' as math;
 
 class Octal {
