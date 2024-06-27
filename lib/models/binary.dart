@@ -87,48 +87,64 @@ class Binary {
     }
   }
 
-  static String toHexadecimal(String binary) {
-    if (binary.contains(".")) {
-      String fractionsPart = binary.substring(binary.indexOf('.') + 1);
-      String integerPart = binary.substring(0, binary.indexOf('.'));
-
-      // Pad IntegerPart and FractionsPart to have a length multiple of 4
-      integerPart = padToMultipleOfFour(integerPart);
-      fractionsPart = padToMultipleOfFour(fractionsPart);
-
-      StringBuffer zeros = StringBuffer();
-
-      // Add zeros to Zeros for every group of 4 zeros at the beginning of
-      // FractionsPart
-      int i = 0;
-      while (i < fractionsPart.length &&
-          fractionsPart.substring(i, i + 4) == "0000") {
-        zeros.write("0");
-        i += 4;
-      }
-
-      // Convert IntegerPart and FractionsPart to hexadecimal
-      String hex1 =
-          int.parse(integerPart, radix: 2).toRadixString(16).toUpperCase();
-      String hex2 =
-          int.parse(fractionsPart, radix: 2).toRadixString(16).toUpperCase();
-
-      // Remove trailing zeros from Hex2
-      while (hex2.isNotEmpty && hex2[hex2.length - 1] == '0') {
-        hex2 = hex2.substring(0, hex2.length - 1);
-      }
-
-      // Construct the final hexadecimal string
-      return "$hex1.$zeros$hex2";
-    } else {
-      // Pad Binary to have a length multiple of 4
-      binary = padToMultipleOfFour(binary);
-
-      // Convert Binary to hexadecimal
-      String hex = int.parse(binary, radix: 2).toRadixString(16).toUpperCase();
-
-      return hex;
+  static String removeLastCharacter(String str) {
+    if (str.isEmpty) {
+      return str;
     }
+    return str.substring(0, str.length - 1);
+  }
+
+  static String toHexadecimal(String binary) {
+    bool isNegative = binary.startsWith("-");
+    if (isNegative) {
+      binary = binary.substring(1);
+    }
+
+    String fractionsPart = "";
+    String integerPart = binary;
+
+    if (binary.contains(".")) {
+      fractionsPart = binary.substring(binary.indexOf('.') + 1);
+      integerPart = binary.substring(0, binary.indexOf('.'));
+    }
+
+    // Pad IntegerPart to have a length multiple of 4
+    integerPart = padToMultipleOfFour(integerPart);
+
+    // Convert IntegerPart to hexadecimal
+    String hex1 =
+        int.parse(integerPart, radix: 2).toRadixString(16).toUpperCase();
+
+    String hex2 = "";
+    if (fractionsPart.isNotEmpty) {
+      // Convert fractionsPart to decimal value first
+      double fractionalDecimal = 0.0;
+      for (int i = 0; i < fractionsPart.length; i++) {
+        if (fractionsPart[i] == '1') {
+          fractionalDecimal += 1 / math.pow(2, i + 1);
+        }
+      }
+
+      // Convert decimal fraction to hexadecimal
+      int fractionalInt;
+      for (int i = 0; i < 10 && fractionalDecimal > 0; i++) {
+        // Limit the conversion to 10 digits for precision
+        fractionalDecimal *= 16;
+        fractionalInt = fractionalDecimal.floor();
+        hex2 += fractionalInt.toRadixString(16).toUpperCase();
+        fractionalDecimal -= fractionalInt;
+      }
+    }
+
+    // Remove trailing zeros from hex2
+    hex2 = hex2.replaceAll(RegExp(r'0+$'), '');
+
+    // Construct the final hexadecimal string
+    String hex = hex2.isNotEmpty ? "$hex1.$hex2" : hex1;
+    if (isNegative) {
+      hex = "-$hex";
+    }
+    return hex;
   }
 
   // Helper method to pad a binary string to have a length multiple of 4
