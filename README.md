@@ -125,5 +125,5 @@ Contributions are welcome! Please fork the repository and use a feature branch. 
 
 ## Acknowledgments
 
-- [Flutter](https://flutter.dev/)
-- [Provider](https://pub.dev/packages/provider)
+- [Flutter](https://flutter.dev/).
+- [Provider](https://pub.dev/packages/provider).
