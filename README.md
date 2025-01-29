@@ -25,7 +25,6 @@ Base Converter App is a Flutter application that allows users to convert numbers
 
 ### Desktop View
 
-
 | Light Theme |
 |-------------|
 ![Desktop View](./Screenshot/desktop_view_light.png)
